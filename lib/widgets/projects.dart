@@ -49,7 +49,7 @@ class Projects extends StatelessWidget {
                 GestureDetector(
                   onTap: _launchURL,
                   child: const Text(
-                    'www.xxxxxx.de',
+                    'Github Link',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.blue,
