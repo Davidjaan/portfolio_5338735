@@ -15,7 +15,7 @@ Folge der offiziellen Installationsanleitung auf der Flutter Webseite und stelle
 
 3. navigieren sie im Terminal in die Repository cd (portfolio_5338735), falls sie nicht im Projekt sind und starten sie die anwendung mit (flutter run).
 
-Kurze App-Navigationsdokumentation
+# Kurze App-Navigationsdokumentation
 Navigation
 Die App nutzt den Flutter Navigator für die Seitennavigation. MaterialPageRoute wird verwendet, um zwischen den Hauptseiten zu wechseln.
 
