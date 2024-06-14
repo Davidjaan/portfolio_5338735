@@ -6,7 +6,7 @@ class Projects extends StatelessWidget {
 
   // Function to handle URL launch
   void _launchURL() async {
-    const url = 'https://www.xxxxxx.de';
+    const url = 'https://github.com/Davidjaan/portfolio_5338735.git';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
