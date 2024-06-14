@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_5338735/widgets/about.dart';
 import 'package:portfolio_5338735/widgets/projects.dart';
 import 'package:portfolio_5338735/widgets/start_desktop.dart';
 import 'package:portfolio_5338735/widgets/navbar_desktop.dart';
 import 'package:portfolio_5338735/widgets/navbar_responsive.dart';
 import 'package:portfolio_5338735/widgets/sidebar.dart';
 import 'package:portfolio_5338735/widgets/start_responsive.dart';
-import 'package:portfolio_5338735/widgets/skills.dart'; // Import the Skills widget
-import 'package:portfolio_5338735/widgets/skills_responsive.dart'; // Import the SkillsResponsive widget
+import 'package:portfolio_5338735/widgets/skills.dart';
+import 'package:portfolio_5338735/widgets/skills_responsive.dart';
+
+// Define constants for colors
+class AppColors {
+  static const Color backgroundColor = Color.fromARGB(255, 255, 255, 255);
+}
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,40 +26,48 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      return Scaffold(
-        key: _scaffoldKey,
-        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-        endDrawer: const Sidebar(),
-        body: ListView(
-          scrollDirection: Axis.vertical,
-          children: [
-            if (constraints.maxWidth > 500)
-              const NavbarDesktop()
-            else
-              NavbarResponsive(
-                onMenuTap: () {
-                  _scaffoldKey.currentState?.openEndDrawer();
-                },
-              ),
-            // Start
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final bool isDesktop = constraints.maxWidth > 500;
 
-            if (constraints.maxWidth > 500)
-              const StartDesktop()
-            else
-              const StartResponsive(),
+        return Scaffold(
+          key: _scaffoldKey,
+          backgroundColor: AppColors.backgroundColor,
+          endDrawer: const Sidebar(),
+          body: ListView(
+            scrollDirection: Axis.vertical,
+            children: [
+              // Navbar
+              if (isDesktop)
+                const NavbarDesktop()
+              else
+                NavbarResponsive(
+                  onMenuTap: () {
+                    _scaffoldKey.currentState?.openEndDrawer();
+                  },
+                ),
 
-            // Skills
-            if (constraints.maxWidth > 500)
-              const Skills()
-            else
-              const SkillsResponsive(),
+              // Start Section
+              if (isDesktop)
+                const StartDesktop()
+              else
+                const StartResponsive(),
 
-            // Projects
-            const Projects(),
-          ],
-        ),
-      );
-    });
+              // About Section
+              const About(),
+
+              // Skills Section
+              if (isDesktop)
+                const Skills()
+              else
+                const SkillsResponsive(),
+
+              // Projects Section
+              const Projects(),
+            ],
+          ),
+        );
+      },
+    );
   }
 }
